@@ -4,6 +4,9 @@ import com.repostats.ghbackend.dto.GithubRepositoryDTO;
 import com.repostats.ghbackend.dto.UserDTO;
 import com.repostats.ghbackend.service.GithubService;
 import com.repostats.ghbackend.service.security.CustomOAuth2UserService;
+import com.repostats.ghbackend.util.InfoMessages;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -19,6 +22,7 @@ import static com.repostats.ghbackend.util.GithubApiConst.*;
 
 @Service
 public class GithubServiceImpl implements GithubService {
+    private Logger logger = LoggerFactory.getLogger(GithubServiceImpl.class);
 
     @Autowired
     private RestTemplate restTemplate;
@@ -53,6 +57,7 @@ public class GithubServiceImpl implements GithubService {
     }
 
     private <T> List<T> exchangeAsList(String uri, ParameterizedTypeReference<List<T>> responseType) {
+        logger.info(InfoMessages.EXCHANGE_AS_LIST_GITHUB_API, customOAuth2UserService.getAuthenticatedUser().getEmail(), uri);
         return restTemplate.exchange(
                 uri,
                 HttpMethod.GET,
@@ -61,6 +66,7 @@ public class GithubServiceImpl implements GithubService {
     }
 
     private <T> T exchange(String uri, ParameterizedTypeReference<T> responseType) {
+        logger.info(InfoMessages.EXCHANGE_GITHUB_API, customOAuth2UserService.getAuthenticatedUser().getEmail(), uri);
         return restTemplate.exchange(
                 uri,
                 HttpMethod.GET,

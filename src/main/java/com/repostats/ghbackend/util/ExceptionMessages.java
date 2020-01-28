@@ -8,7 +8,7 @@ public class ExceptionMessages {
     public static final String GITHUB_USER_NOT_AUTHORIZED = "This request is not authorized in Github server";
     public static final String USER_NOT_FOUND = "User not found";
     public static final String AUTH_PROCESS_EXCEPTION_REG_ID_NOT_FOUND = "Registration Id not recognized";
-    public static final String AUTH_PROCESS_EXCEPTION_EMAIL_NOT_FOUND = "Email not recognized from provider";
+    public static final String AUTH_PROCESS_EXCEPTION_EMAIL_NOT_FOUND = "Email not recognized from provider. You need to add public email to OAuth2 Provider i.e. GitHub";
     public static final String USER_AUTH_NOT_SET_INTO_CONTEXT = "User Authentication is not added to security context" ;
 
 

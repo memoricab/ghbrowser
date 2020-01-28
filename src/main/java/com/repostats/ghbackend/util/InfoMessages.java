@@ -1,7 +1,7 @@
 package com.repostats.ghbackend.util;
 
 public class InfoMessages {
-    public static final String UNAUTHORIZED = "Unauthorized! Message: {}" ;
+    public static final String UNAUTHORIZED = "Unauthorized! Message: {}, IP: {}" ;
 
     //Search Service
     public static final String SAVING_SEARCH_KEYWORD = "Saved search keyword: {} to database for user: {} ";
@@ -13,4 +13,8 @@ public class InfoMessages {
     // OAUTH2 USER SERVICE
     public static final String PROCESSING_OAUTH2_USER_UPDATE = "User: {} already registered. Updating Github access info.";
     public static final String PROCESSING_OAUTH2_USER_NEW = "User: {} is being registered to system.";
+
+    // GITHUB SERVICE
+    public static final String EXCHANGE_AS_LIST_GITHUB_API = "User : {} sending exchange as list request to: {}";
+    public static final String EXCHANGE_GITHUB_API = "User : {} sending exchange  request to: {}";
 }
