@@ -1,5 +1,5 @@
 package com.repostats.ghbackend.entity;
 
 public enum AuthProvider {
-    github
+    github //lower case as declared in app properties
 }

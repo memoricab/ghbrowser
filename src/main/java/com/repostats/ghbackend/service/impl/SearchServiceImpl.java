@@ -34,10 +34,10 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public UserDTO searchByGithubUsername(String username) {
+        saveSearch(username);
         UserDTO userDTO = githubService.getUser(username);
         List<GithubRepositoryDTO> repos = githubService.getUserRepositories(username);
         userDTO.setGitRepos(repos);
-        saveSearch(username);
         return userDTO;
     }
 

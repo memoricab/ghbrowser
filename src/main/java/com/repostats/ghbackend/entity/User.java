@@ -25,6 +25,7 @@ public class User implements Serializable {
     @Email
     @Column(nullable = false)
     private String email;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private AuthProvider provider;
