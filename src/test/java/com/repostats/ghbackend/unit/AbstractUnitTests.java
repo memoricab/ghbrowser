@@ -2,10 +2,9 @@ package com.repostats.ghbackend.unit;
 
 import com.repostats.ghbackend.config.AppProperties;
 import com.repostats.ghbackend.oauth.UserPrincipal;
-import com.repostats.ghbackend.service.security.TokenProvider;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -56,5 +56,10 @@ public class AbstractUnitTests {
         auth.setTokenExpirationMsec(mockTokenExp);
         auth.setTokenSecret(mockTokenSecret);
         when(appProperties.getAuth()).thenReturn(auth);
+    }
+
+    @Test
+    public void shouldInjectDependencies(){
+        assertThat(appProperties.getAuth()).isNotNull();
     }
 }

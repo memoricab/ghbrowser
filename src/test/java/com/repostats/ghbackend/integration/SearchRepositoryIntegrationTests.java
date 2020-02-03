@@ -7,14 +7,24 @@ import com.repostats.ghbackend.repository.SearchRepository;
 import com.repostats.ghbackend.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Order;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class SearchRepositoryIntegrationTests extends AbstractIntegrationTests {
+
+@RunWith(SpringRunner.class)
+@DataJpaTest
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.HSQL)
+@ActiveProfiles("test")
+public class SearchRepositoryIntegrationTests {
 
     @Autowired
     private SearchRepository searchRepository;

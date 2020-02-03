@@ -1,0 +1,112 @@
+spring:
+  profiles:
+    active: dev
+
+
+
+---
+
+spring:
+  profiles: dev
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gh?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false # please enter your local datasource url
+    username:  # please enter your local database username
+    password:  # please enter your local database password
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: 9b21bd44e4104d884c11 # my own client id
+            clientSecret: 1daa0dce4df72acf40c2663b70bf6f29e9eb059a # my own client secret
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - user:email
+              - read:user
+
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:4200/oauth2/redirect # redirecturi for authorized
+
+---
+
+spring:
+  profiles: prod
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gh?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+    username: # prod server db username
+    password: # prod server db password
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: 9b21bd44e4104d884c11
+            clientSecret: 1daa0dce4df72acf40c2663b70bf6f29e9eb059a
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - user:email
+              - read:user
+
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:4200/oauth2/redirect
+
+
+---
+
+spring:
+  profiles: test
+  jpa:
+    database: hsql # for test using in-memory database
+    hibernate:
+      ddl-auto: update
+
+  security:
+      oauth2:
+        client:
+          registration:
+            github:
+              clientId: 9b21bd44e4104d884c11
+              clientSecret: 1daa0dce4df72acf40c2663b70bf6f29e9eb059a
+              redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+              scope:
+                - user:email
+                - read:user
+
+  app:
+    auth:
+      tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+      tokenExpirationMsec: 864000000
+    oauth2:
+      authorizedRedirectUris:
+        - http://localhost:4200/oauth2/redirect
+
+
+
+
+
