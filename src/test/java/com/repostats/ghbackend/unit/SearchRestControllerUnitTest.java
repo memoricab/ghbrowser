@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-public class SearchRestControllerUnitTests extends AbstractSpringBootTest {
+public class SearchRestControllerUnitTest extends AbstractSpringBootTest {
 
     @MockBean
     private SearchService searchService;

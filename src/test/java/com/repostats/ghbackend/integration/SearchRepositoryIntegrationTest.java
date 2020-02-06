@@ -24,7 +24,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.HSQL)
 @ActiveProfiles("test")
-public class SearchRepositoryIntegrationTests {
+public class SearchRepositoryIntegrationTest {
 
     @Autowired
     private SearchRepository searchRepository;

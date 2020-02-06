@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.HSQL)
 @ActiveProfiles("test")
-public class UserRepositoryIntegrationTests {
+public class UserRepositoryIntegrationTest {
 
     @Autowired
     private UserRepository userRepository;
