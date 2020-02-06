@@ -21,7 +21,7 @@ import java.util.List;
 import static com.repostats.ghbackend.util.GithubApiConst.*;
 
 @Service
-public class GithubServiceImpl implements GithubService {
+class GithubServiceImpl implements GithubService {
     private Logger logger = LoggerFactory.getLogger(GithubServiceImpl.class);
 
     @Autowired

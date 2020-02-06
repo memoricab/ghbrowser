@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AbstractUnitTests {
+public class AbstractUnitTest {
     protected static final long mockUserId = 1L;
     protected static final String mockUserEmail = "email@email.com";
     protected static final long mockTokenExp = 10000L;

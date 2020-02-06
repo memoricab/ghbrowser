@@ -11,7 +11,7 @@ import java.util.Date;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class TokenProviderUnitTests extends AbstractUnitTests {
+public class TokenProviderUnitTest extends AbstractUnitTest {
     private static final Date dateExpired = new Date();
     private static final Date dateNotExpired = new Date((new Date()).getTime() + mockTokenExp);
 

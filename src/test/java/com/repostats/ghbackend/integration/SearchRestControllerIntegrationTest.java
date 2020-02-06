@@ -1,4 +1,4 @@
-package com.repostats.ghbackend.unit;
+package com.repostats.ghbackend.integration;
 
 import com.repostats.ghbackend.dto.SearchDTO;
 import com.repostats.ghbackend.dto.UserDTO;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-public class SearchRestControllerUnitTests extends AbstractSpringBootTest {
+public class SearchRestControllerIntegrationTest extends AbstractSpringBootTest {
 
     @MockBean
     private SearchService searchService;
