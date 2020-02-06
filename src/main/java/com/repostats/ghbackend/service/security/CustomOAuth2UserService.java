@@ -1,13 +1,11 @@
 package com.repostats.ghbackend.service.security;
 
 
-import com.repostats.ghbackend.entity.AuthProvider;
 import com.repostats.ghbackend.entity.User;
 import com.repostats.ghbackend.exception.OAuth2ProcessException;
 import com.repostats.ghbackend.oauth.OAuth2UserInfoFactory;
 import com.repostats.ghbackend.oauth.UserPrincipal;
 import com.repostats.ghbackend.oauth.pojo.OAuth2UserInfo;
-import com.repostats.ghbackend.repository.UserRepository;
 import com.repostats.ghbackend.service.UserService;
 import com.repostats.ghbackend.util.ExceptionMessages;
 import com.repostats.ghbackend.util.InfoMessages;
@@ -33,9 +31,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException {
@@ -69,28 +64,11 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         if (userOptional.isPresent()) {
             logger.info(InfoMessages.PROCESSING_OAUTH2_USER_UPDATE, userOptional.get().getEmail());
             user = userOptional.get();
-            user = updateUser(user, oAuth2UserRequest, oAuth2UserInfo);
+            user = userService.updateOAuth2User(user, oAuth2UserRequest, oAuth2UserInfo);
         } else {
             logger.info(InfoMessages.PROCESSING_OAUTH2_USER_NEW, oAuth2UserInfo.getEmail());
-            user = registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
+            user = userService.saveOAuth2User(oAuth2UserRequest, oAuth2UserInfo);
         }
         return UserPrincipal.create(user, oAuth2User.getAttributes());
-    }
-
-    private User registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
-        User user = new User();
-        user.setProvider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
-        user.setProviderId(oAuth2UserInfo.getId());
-        user.setUsername(oAuth2UserInfo.getUsername());
-        user.setEmail(oAuth2UserInfo.getEmail());
-        user.setGithubAccessToken(oAuth2UserRequest.getAccessToken().getTokenValue());
-        return userRepository.save(user);
-
-    }
-
-    private User updateUser(User existingUser, OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
-        existingUser.setUsername(oAuth2UserInfo.getUsername());
-        existingUser.setGithubAccessToken(oAuth2UserRequest.getAccessToken().getTokenValue());
-        return userRepository.saveAndFlush(existingUser);
     }
 }
