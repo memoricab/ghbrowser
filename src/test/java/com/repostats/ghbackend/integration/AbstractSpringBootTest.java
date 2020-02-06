@@ -1,4 +1,4 @@
-package com.repostats.ghbackend.unit;
+package com.repostats.ghbackend.integration;
 
 import com.repostats.ghbackend.GhbackendApplication;
 import org.springframework.beans.factory.annotation.Autowired;

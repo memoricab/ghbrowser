@@ -1,4 +1,4 @@
-package com.repostats.ghbackend.unit;
+package com.repostats.ghbackend.integration;
 
 import com.repostats.ghbackend.dto.GithubRepositoryDTO;
 import com.repostats.ghbackend.dto.UserDTO;
@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-public class UserRestControllerUnitTest extends AbstractSpringBootTest {
+public class UserRestConrollerIntegrationTest extends AbstractSpringBootTest {
 
     @MockBean
     private UserService userService;
