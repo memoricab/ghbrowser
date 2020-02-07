@@ -11,7 +11,7 @@ import com.repostats.ghbackend.util.ExceptionMessages;
 import com.repostats.ghbackend.util.InfoMessages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,9 +28,11 @@ import java.util.Optional;
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     private Logger logger = LoggerFactory.getLogger(CustomOAuth2UserService.class);
+    private final UserService userService;
 
-    @Autowired
-    private UserService userService;
+    public CustomOAuth2UserService(@Lazy UserService userService) {
+        this.userService = userService; // userService is here for only accessing userRepository; therefore lazy initialization to prevent from circular injection of userService
+    }
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException {
