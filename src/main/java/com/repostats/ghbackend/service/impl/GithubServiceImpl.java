@@ -8,6 +8,7 @@ import com.repostats.ghbackend.util.InfoMessages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -23,12 +24,14 @@ import static com.repostats.ghbackend.util.GithubApiConst.*;
 @Service
 class GithubServiceImpl implements GithubService {
     private Logger logger = LoggerFactory.getLogger(GithubServiceImpl.class);
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
-    private CustomOAuth2UserService customOAuth2UserService;
+    public GithubServiceImpl(@Lazy CustomOAuth2UserService customOAuth2UserService) {
+        this.customOAuth2UserService = customOAuth2UserService;
+    }
 
     @Override
     public UserDTO getCurrentUser() {
